@@ -1,5 +1,7 @@
 package br.edu.smartpark.repository;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 public class InMemoryRepository<T> {
     private final Map<String,T> data=new HashMap<>();
     public void save(String id,T value){data.put(id,value);}

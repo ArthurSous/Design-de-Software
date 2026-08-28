@@ -1,6 +1,7 @@
 package br.edu.smartpark.patterns.facade;
+import br.edu.smartpark.patterns.adapter.PaymentAdapter;
+import br.edu.smartpark.patterns.adapter.SensorAdapter;
 import br.edu.smartpark.service.SmartParkService;
-import br.edu.smartpark.patterns.adapter.*;
 public class SmartParkFacade {
     public final SmartParkService service;
     public final SensorAdapter sensor;

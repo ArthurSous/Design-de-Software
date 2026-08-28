@@ -1,15 +1,26 @@
 package br.edu.smartpark;
-import br.edu.smartpark.model.*;
-import br.edu.smartpark.service.*;
-import br.edu.smartpark.patterns.facade.*;
-import br.edu.smartpark.patterns.adapter.*;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
+
+import br.edu.smartpark.model.ParkingSpot;
+import br.edu.smartpark.model.Vehicle;
+import br.edu.smartpark.patterns.adapter.PaymentAdapter;
+import br.edu.smartpark.patterns.adapter.SensorAdapter;
+import br.edu.smartpark.patterns.facade.SmartParkFacade;
+import br.edu.smartpark.patterns.factory.SpotFactory;
+import br.edu.smartpark.service.SmartParkService;
 
 public class Main {
     public static void main(String[] args){
+        // Corrige acentuação no console (ex.: "Saída" aparecendo como "Sa?da"),
+        // forçando a saída padrão para UTF-8 independentemente do locale do SO.
+        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
+
         SmartParkService service=new SmartParkService();
 
-        service.spots.save("A01",new ParkingSpot("A01","CAR"));
-        service.spots.save("M01",new ParkingSpot("M01","MOTORCYCLE"));
+        // Agora a Factory (antes morta/nunca usada) é quem cria as vagas.
+        service.spots.save("A01", SpotFactory.create("CAR","A01"));
+        service.spots.save("M01", SpotFactory.create("MOTORCYCLE","M01"));
         service.vehicles.save("ABC1D23",new Vehicle("ABC1D23","CAR","Cliente Demo"));
 
         service.reserve("ABC1D23","CAR");
