@@ -23,10 +23,10 @@ Transformar os achados do legado do SmartPark em um backlog técnico priorizado,
 - [x] Definition of Done.
 - [x] Registro de evidência de compilação.
 - [x] Branch sugerida: `aula-05`.
-- [ ] Criar a Issue no GitHub com este conteúdo.
-- [ ] Criar branch `aula-05`.
-- [ ] Fazer commits explicativos.
-- [ ] Abrir PR ou realizar revisão equivalente.
+- [x] Criar a Issue no GitHub com este conteúdo.
+- [x] Criar branch `aula-05`.
+- [x] Fazer commits explicativos.
+- [x] Abrir PR ou realizar revisão equivalente.
 
 ## Observação
 A Aula 05 é principalmente de planejamento técnico. Os itens do backlog acima descrevem correções futuras; eles não devem ser considerados implementados apenas porque foram registrados.
