@@ -1,0 +1,20 @@
+Evidência de compilação — SmartPark Aula 05
+
+javac return code: 0
+
+java Main return code: 0
+
+Saída da execução:
+OPS A01 SPOT_RESERVED
+SENSOR=A01|FREE|2026-08-10T20:00:00
+GATE ENTRY OPEN
+OPS S1 VEHICLE_ENTERED
+GATE EXIT OPEN
+NOTIFY ABC1D23 => Saída registrada. Valor=15.0 status=PAID
+OPS S1 VEHICLE_EXITED
+STATUS=PAID
+SPOT_RESERVED=true
+SPOT_VEHICLE=ABC1D23
+
+
+Observação: esta evidência valida que o legado atual compila/executa; ela não significa que os bugs listados no backlog já foram corrigidos.
