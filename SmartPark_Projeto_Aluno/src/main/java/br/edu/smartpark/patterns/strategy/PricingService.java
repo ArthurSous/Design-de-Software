@@ -1,11 +1,34 @@
 package br.edu.smartpark.patterns.strategy;
-public class PricingService {
-    private PricingStrategy strategy;
-    public void setStrategy(PricingStrategy strategy){this.strategy=strategy;}
 
-    public double calculate(String vehicleType,long minutes){
-        if("MOTORCYCLE".equals(vehicleType)) return 5.0 + (minutes/60)*2.0;
-        if("CAR".equals(vehicleType)) return 10.0 + (minutes/60)*5.0;
-        return strategy==null ? 8.0 : strategy.calculate(minutes);
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Strategy de verdade: o cálculo de preço depende de qual PricingStrategy
+ * está registrada para o tipo de veículo, e não de um if/else fixo.
+ * Isso permite adicionar um novo tipo de veículo (ex.: "TRUCK") sem
+ * alterar esta classe — basta registrar uma nova estratégia.
+ */
+public final class PricingService {
+    private final Map<String, PricingStrategy> strategies = new HashMap<>();
+    private final PricingStrategy defaultStrategy;
+
+    public PricingService() {
+        this(new DefaultPricingStrategy());
+    }
+
+    public PricingService(PricingStrategy defaultStrategy) {
+        this.defaultStrategy = defaultStrategy;
+        registerStrategy("CAR", new CarPricingStrategy());
+        registerStrategy("MOTORCYCLE", new MotorcyclePricingStrategy());
+    }
+
+    public void registerStrategy(String vehicleType, PricingStrategy strategy) {
+        strategies.put(vehicleType, strategy);
+    }
+
+    public double calculate(String vehicleType, long minutes) {
+        PricingStrategy strategy = strategies.getOrDefault(vehicleType, defaultStrategy);
+        return strategy.calculate(minutes);
     }
 }

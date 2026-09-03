@@ -1,9 +1,25 @@
 package br.edu.smartpark.patterns.adapter;
+
 import br.edu.smartpark.legacy.PaymentLegacyGateway;
-public class PaymentAdapter {
-    private final PaymentLegacyGateway legacy=new PaymentLegacyGateway();
-    public boolean charge(String plate,double amount,String method){
-        return legacy.pay(plate,amount,method).startsWith("00;");
+import br.edu.smartpark.patterns.ports.PaymentPort;
+
+public class PaymentAdapter implements PaymentPort {
+    private final PaymentLegacyGateway legacy;
+
+    public PaymentAdapter() {
+        this(new PaymentLegacyGateway());
     }
-    public PaymentLegacyGateway legacy(){return legacy;}
+
+    public PaymentAdapter(PaymentLegacyGateway legacy) {
+        this.legacy = legacy;
+    }
+
+    @Override
+    public boolean charge(String plate, double amount, String method) {
+        return legacy.pay(plate, amount, method).startsWith("00;");
+    }
+
+    public PaymentLegacyGateway legacy() {
+        return legacy;
+    }
 }
